@@ -1,0 +1,4 @@
+# EDUTRACK: A Collaborative Teacher’s Portal for Academic Oversight
+EduTrack: A Collaborative Teacher’s Portal for Academic Insight is a database application specifically designed for teachers in Reyes Computer Oriented School. It aims to bridge the communication gap between the subject teachers and the class adviser by providing a unified workplace where they can collaborate in monitoring the student progress. 
+
+The streamline of this system in managing the student’s record is through integrating two important pillars of school success: Academic performance and Attendance consistency. In contrast to traditional record keeping, EduTrack merges daily attendance along with multi-subject grade evaluation to deliver real-time data analysis, allowing class advisers to view the overall academic status of their students, identifying performance patterns and attendance issues before they lead to failure or dropouts. 
