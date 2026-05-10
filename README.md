@@ -22,6 +22,7 @@ Then import in this order — order matters now because views depend on the tabl
 2. `database/data.sql` ← new, sample data
 3. `database/views.sql` ← new, needed for reports
 
+---
 
 ## Environment Variables
 Go into the `backend/` folder. The `.env.example` is already filled out correctly — just rename it to `.env`. Or create a new `.env` manually:
@@ -36,6 +37,7 @@ If your XAMPP MySQL has a password set, fill in DB_PASSWORD. *Most local setups 
 
 Note: *Port changed from 5000 (old) to 3000 (new).*
 
+---
 
 ## Install Dependencies
 ```bash
@@ -43,12 +45,16 @@ cd backend
 npm install
 ```
 
+---
+
 ## Run It
 ```bash
 npm run dev
 ```
 That uses nodemon now, so the server auto-restarts when you edit files. If you don't want that, npm start works too.
 Server will be at `http://localhost:3000`. Test it with `http://localhost:3000/api/students`.
+
+---
 
 ## Frontend
 Just open `EduTrack_Front.html` directly in your browser. Same with `Log_inPage.html`. No build step needed — it's plain HTML.
