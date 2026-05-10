@@ -145,7 +145,7 @@ INSERT INTO class (assignment_id, subject_id, teacher_id, section_id) VALUES
 (1017, 200102, 225041, 500342), -- Teresa Magbanua teachers Gen Math to Narra
 (1025, 200105, 557382, 500654), -- Juan Luna teaches PE and Health to Kamagong
 (1033, 200103, 339182, 500781), -- Gregorio Del Pilar teaches Earth and Life Science in Molave
-(1041, 200106, 663910, 500923), -- Marino Dizon teaches EMpowerment Technologies to Acaccia
+(1041, 200106, 663910, 500923); -- Marino Dizon teaches EMpowerment Technologies to Acaccia
 
 
 
