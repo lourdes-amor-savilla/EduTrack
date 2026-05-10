@@ -24,7 +24,7 @@ INSERT INTO section (section_id, section_name, grade_level) VALUES
 (500781, 'Molave', 'Grade 10'),
 (500923, 'Acacia', 'Grade 10');
 
---Advisor Table
+-- Advisor Table
 
 INSERT INTO advisor (teacher_id, section_id) VALUES 
 (112098, 500210), -- Antonio Luna advises Sampaguita
@@ -34,7 +34,7 @@ INSERT INTO advisor (teacher_id, section_id) VALUES
 (557382, 500654), -- Juan Luna advises Kamagong
 (663910, 500923); -- Marina Dizon advises Acacia
 
---Student Table
+-- Student Table
 INSERT INTO student (student_id, first_name, middle_name, last_name, section_id) VALUES
 -- Section 500210 (Sampaguita)
 (881001, 'Juan', 'Ponce', 'Dela Cruz', 500210),
@@ -109,7 +109,7 @@ INSERT INTO student (student_id, first_name, middle_name, last_name, section_id)
 (886010, 'Vhong', 'Navarro', 'Navarro', 500923);
 
 
---Subject Table
+-- Subject Table
 
 INSERT INTO subject (subject_id, subject_name) VALUES
 (200101, 'Oral Communication'),
@@ -122,7 +122,7 @@ INSERT INTO subject (subject_id, subject_name) VALUES
 (200108, 'Understanding Culture, Society and Politics');
 
 
---Class Table
+-- Class Table
 
 INSERT INTO class (assignment_id, subject_id, teacher_id, section_id) VALUES
 (1001, 200101, 112098, 500119), -- Antonio Luna teaches Oral Comm to Ipil-Ipil
@@ -140,12 +140,12 @@ INSERT INTO class (assignment_id, subject_id, teacher_id, section_id) VALUES
 (1013, 200105, 557382, 500210), -- Juan Luna teaches PE and Health to Sampaguita
 (1014, 200106, 663910, 500210), -- Marina Dizon teaches Empowerment Technologies to Sampaguita
 (1015, 200107, 774821, 500210), -- Francisco Balagtas teaches 21st Century Literature to Sampaguita
-(1016, 200108, 882934, 500210); -- Leona Florentino teaches Understanding Culture, Society and Politics to Sampaguita
+(1016, 200108, 882934, 500210), -- Leona Florentino teaches Understanding Culture, Society and Politics to Sampaguita
 
 (1017, 200102, 225041, 500342), -- Teresa Magbanua teachers Gen Math to Narra
 (1025, 200105, 557382, 500654), -- Juan Luna teaches PE and Health to Kamagong
 (1033, 200103, 339182, 500781), -- Gregorio Del Pilar teaches Earth and Life Science in Molave
-(1041, 200106, 663910, 663910), -- Marino Dizon teaches EMpowerment Technologies to Acaccia
+(1041, 200106, 663910, 500923), -- Marino Dizon teaches EMpowerment Technologies to Acaccia
 
 
 
@@ -177,7 +177,7 @@ INSERT INTO attendance_record (attendance_id, date, status, student_id, assignme
 (9019, '2026-03-17', 'Present', 881009, 1009),
 (9020, '2026-03-17', 'Present', 881010, 1009),
 
---March 18
+-- March 18
 
 (9021, '2026-03-18', 'Present', 881001, 1009),
 (9022, '2026-03-18', 'Present', 881002, 1009),
@@ -216,7 +216,7 @@ INSERT INTO attendance_record (attendance_id, date, status, student_id, assignme
 (149, '2026-03-20', 'Present', 881009, 1009), 
 (150, '2026-03-20', 'Present', 881010, 1009);
 
---March 13 (Ipil-Ipil)
+-- March 13 (Ipil-Ipil)
 (301, '2026-03-13', 'Absent', 884001, 1001), 
 (302, '2026-03-13', 'Absent', 884002, 1001), 
 (303, '2026-03-13', 'Tardy', 884003, 1001), 
@@ -406,6 +406,3 @@ INSERT INTO attendance_record (attendance_id, date, status, student_id, assignme
 (653, '2026-03-18', 'Tardy', 885002, 1025), 
 (654, '2026-03-19', 'Tardy', 885002, 1025), 
 (655, '2026-03-20', 'Tardy', 885002, 1025);
-
-
-
