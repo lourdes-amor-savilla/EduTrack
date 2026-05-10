@@ -217,6 +217,7 @@ INSERT INTO attendance_record (attendance_id, date, status, student_id, assignme
 (150, '2026-03-20', 'Present', 881010, 1009);
 
 -- March 13 (Ipil-Ipil)
+INSERT INTO attendance_record (attendance_id, date, status, student_id, assignment_id) VALUES
 (301, '2026-03-13', 'Absent', 884001, 1001), 
 (302, '2026-03-13', 'Absent', 884002, 1001), 
 (303, '2026-03-13', 'Tardy', 884003, 1001), 
