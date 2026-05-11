@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduTrack — Login</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/login.css" />
+  </head>
+  <body>
+    <div class="login-card">
+      <div class="login-logo">
+        <div class="et-logo">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M12 2C8.68 2 6 4.68 6 8c0 5 6 12 6 12s6-7 6-12c0-3.32-2.68-6-6-6z"
+              fill="white"
+              opacity=".9"
+            />
+            <circle cx="12" cy="8" r="2" fill="#1155a8" />
+            <path d="M4 17h7v2H4zM13 17h7v2h-7z" fill="white" opacity=".6" />
+          </svg>
+        </div>
+        <div>
+          <div class="brand-name">EduTrack</div>
+          <div class="brand-sub">Reyes Computer Oriented School</div>
+        </div>
+      </div>
+      <h1>Welcome back 👋</h1>
+      <div class="subtitle">Sign in to the Academic Oversight Portal</div>
+      <div class="error-msg" id="errorMsg"></div>
+      <div class="field">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="your@rcos.edu.ph"
+          autocomplete="email"
+        />
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="••••••••"
+          autocomplete="current-password"
+        />
+      </div>
+      <button class="btn-login" id="loginBtn" onclick="doLogin()">
+        Sign In
+      </button>
+      <div class="demo-accounts">
+        <div class="demo-title">Quick Demo Login</div>
+        <button class="demo-btn" onclick="fillDemo('ana.reyes@rcos.edu.ph')">
+          <span>👩‍🏫</span> Mrs. Ana Reyes (Math Teacher)
+          <span class="demo-badge teacher">Teacher</span>
+        </button>
+        <button
+          class="demo-btn"
+          onclick="fillDemo('carlos.bautista@rcos.edu.ph')"
+        >
+          <span>👨‍🏫</span> Mr. Carlos Bautista
+          <span class="demo-badge adviser">Class Adviser</span>
+        </button>
+        <button class="demo-btn" onclick="fillDemo('jose.cruz@rcos.edu.ph')">
+          <span>👨‍🏫</span> Mr. Jose Cruz (Science)
+          <span class="demo-badge teacher">Teacher</span>
+        </button>
+      </div>
+    </div>
+    <script src="js/login.js"></script>
+  </body>
+</html>

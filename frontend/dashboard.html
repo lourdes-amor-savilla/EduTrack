@@ -1,0 +1,1415 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduTrack – Academic Oversight Portal</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/dashboard.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <!-- ═══ HEADER ═══ -->
+      <header class="top-header">
+        <div class="header-brand">
+          <div class="et-logo">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 2C8.68 2 6 4.68 6 8c0 5 6 12 6 12s6-7 6-12c0-3.32-2.68-6-6-6z"
+                fill="white"
+                opacity=".9"
+              />
+              <circle cx="12" cy="8" r="2" fill="#1155a8" />
+              <path d="M4 17h7v2H4zM13 17h7v2h-7z" fill="white" opacity=".6" />
+            </svg>
+          </div>
+          <div>
+            <div class="brand-name">EduTrack</div>
+            <div class="brand-sub">Academic Oversight Portal</div>
+          </div>
+        </div>
+        <div class="header-divider"></div>
+        <div class="header-page-title">
+          Dashboard <span class="crumb-sep">›</span>
+          <span id="activeSectionLabel" style="color: var(--brand-600)"
+            >Overview</span
+          >
+        </div>
+
+        <div class="header-actions">
+          <!-- User profile -->
+          <div class="user-profile-wrap">
+            <div
+              class="user-avatar"
+              id="userAvatarBtn"
+              onclick="toggleProfileDropdown(event)"
+              title="My Profile"
+              id="headerAvatar"
+            >
+              AR
+            </div>
+            <div class="profile-dropdown" id="profileDropdown">
+              <div class="profile-dropdown-header">
+                <div class="profile-dropdown-avatar" id="ddAvatar">AR</div>
+                <div>
+                  <div class="profile-dropdown-name" id="ddName">
+                    Mrs. Ana Reyes
+                  </div>
+                  <div class="profile-dropdown-role" id="ddRole">
+                    Subject Teacher
+                  </div>
+                  <div class="profile-dropdown-email" id="ddEmail">
+                    ana.reyes@rcos.edu.ph
+                  </div>
+                </div>
+              </div>
+              <div class="profile-dropdown-menu">
+                <button
+                  class="profile-menu-item"
+                  onclick="
+                    openTeacherProfile();
+                    toggleProfileDropdown();
+                  "
+                >
+                  <div class="pmi-icon blue">👤</div>
+                  My Profile
+                </button>
+                <div class="profile-menu-divider"></div>
+                <button class="profile-menu-item danger" onclick="doLogout()">
+                  <div class="pmi-icon red">🚪</div>
+                  Sign Out
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- ═══ SIDEBAR ═══ -->
+      <aside class="sidebar">
+        <div class="sidebar-section-label">Main</div>
+        <div
+          class="nav-item active"
+          onclick="showSection('dashboard', this, 'Overview')"
+        >
+          <span class="nav-icon">
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="3" y="3" width="7" height="7" />
+              <rect x="14" y="3" width="7" height="7" />
+              <rect x="14" y="14" width="7" height="7" />
+              <rect x="3" y="14" width="7" height="7" />
+            </svg>
+          </span>
+          <span>Dashboard</span>
+        </div>
+        <div
+          class="nav-item"
+          onclick="showSection('students', this, 'Students')"
+        >
+          <span class="nav-icon">
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+            </svg>
+          </span>
+          <span>Students</span>
+        </div>
+        <div class="nav-item" onclick="showSection('grades', this, 'Grades')">
+          <span class="nav-icon">
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+              />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+            </svg>
+          </span>
+          <span>Grades</span>
+        </div>
+        <div
+          class="nav-item"
+          onclick="showSection('attendance', this, 'Attendance')"
+        >
+          <span class="nav-icon">
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+          </span>
+          <span>Attendance</span>
+        </div>
+        <div class="sidebar-section-label">Reports</div>
+        <div class="nav-item" onclick="showSection('reports', this, 'Reports')">
+          <span class="nav-icon">
+            <svg
+              class="icon"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M3 3h18v18H3z" />
+              <path d="M3 9h18M9 21V9" />
+            </svg>
+          </span>
+          <span>Reports</span>
+        </div>
+        <div class="sidebar-footer">
+          <div class="sidebar-user-card">
+            <div
+              class="user-avatar"
+              style="
+                width: 30px;
+                height: 30px;
+                font-size: 0.72rem;
+                border-radius: 7px;
+              "
+              id="sidebarAvatar"
+            >
+              AR
+            </div>
+            <div>
+              <div class="su-name" id="sidebarName">Mrs. Ana Reyes</div>
+              <div class="su-role" id="sidebarRole">Subject Teacher</div>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- ═══ MAIN CONTENT ═══ -->
+      <main class="main-content">
+        <!-- ══ DASHBOARD ══ -->
+        <div class="section-view active" id="section-dashboard">
+          <div class="page-header">
+            <div>
+              <h1 id="greetingText">Good morning 👋</h1>
+              <div class="page-meta">
+                Reyes Computer Oriented School · S.Y. 2024–2025 · 2nd Grading
+                Period
+              </div>
+            </div>
+          </div>
+
+          <div class="stat-cards">
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <div class="stat-card-title">Total Students</div>
+                <div class="stat-icon blue">
+                  <svg
+                    class="icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                </div>
+              </div>
+              <div class="stat-value" id="statTotalStudents">—</div>
+              <div class="stat-change neutral" id="statTotalSub">Loading…</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <div class="stat-card-title">At-Risk Students</div>
+                <div class="stat-icon red">
+                  <svg
+                    class="icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"
+                    />
+                    <line x1="12" y1="9" x2="12" y2="13" />
+                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                  </svg>
+                </div>
+              </div>
+              <div
+                class="stat-value"
+                id="statAtRisk"
+                style="color: var(--danger)"
+              >
+                —
+              </div>
+              <div class="stat-change down">5+ absences flagged</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <div class="stat-card-title">Academic Achievers</div>
+                <div class="stat-icon yellow">
+                  <svg
+                    class="icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polygon
+                      points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+                    />
+                  </svg>
+                </div>
+              </div>
+              <div
+                class="stat-value"
+                id="statExcellence"
+                style="color: var(--warning)"
+              >
+                —
+              </div>
+              <div class="stat-change up">GWA ≥ 90 · No Failing</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-header">
+                <div class="stat-card-title">Teacher Assignments</div>
+                <div class="stat-icon green">
+                  <svg
+                    class="icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polyline points="20 6 9 17 4 12" />
+                  </svg>
+                </div>
+              </div>
+              <div
+                class="stat-value"
+                id="statAssignments"
+                style="color: var(--success)"
+              >
+                —
+              </div>
+              <div class="stat-change neutral">Active class assignments</div>
+            </div>
+          </div>
+
+          <!-- At-Risk & Excellence side-by-side -->
+          <div class="dashboard-grid">
+            <!-- AT-RISK -->
+            <div class="card" style="grid-column: 1/2">
+              <div class="card-header">
+                <div class="card-title">
+                  <span class="dot" style="background: var(--danger)"></span
+                  >At-Risk Monitor
+                </div>
+                <span style="font-size: 0.7rem; color: var(--gray-500)"
+                  >2 Tardies = 1 Abs · 5 Abs = At-Risk</span
+                >
+              </div>
+              <div class="card-body">
+                <div id="atRiskList" class="risk-student-list">
+                  <div class="empty-state">Loading at-risk data…</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- EXCELLENCE -->
+            <div class="card" style="grid-column: 2/3">
+              <div class="card-header">
+                <div class="card-title">
+                  <span class="dot" style="background: #f59e0b"></span>Academic
+                  Excellence
+                </div>
+              </div>
+              <div class="card-body">
+                <div id="excellenceList" class="leaderboard-list">
+                  <div class="empty-state">Loading excellence data…</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION SUMMARY -->
+            <div class="card" style="grid-column: 3/4">
+              <div class="card-header">
+                <div class="card-title">
+                  <span class="dot" style="background: var(--brand-500)"></span
+                  >Teacher Assignments
+                </div>
+              </div>
+              <div class="card-body" id="assignmentsList">
+                <div class="empty-state">Loading…</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ STUDENTS ══ -->
+        <div class="section-view" id="section-students">
+          <div class="page-header">
+            <div>
+              <h1>Students</h1>
+              <div class="page-meta">Manage student records</div>
+            </div>
+            <div style="display: flex; gap: 10px">
+              <button class="btn btn-primary" onclick="openAddStudentModal()">
+                <svg
+                  class="icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="16" />
+                  <line x1="8" y1="12" x2="16" y2="12" />
+                </svg>
+                Add Student
+              </button>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">All Students</div>
+              <div class="table-controls">
+                <div class="search-box">
+                  <svg
+                    class="icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg>
+                  <input
+                    type="text"
+                    id="studentSearch"
+                    placeholder="Search name or ID…"
+                    oninput="filterStudents()"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="card-body" style="padding: 0">
+              <div class="table-wrap">
+                <table class="data-table" id="studentsTable">
+                  <thead>
+                    <tr>
+                      <th>Student ID</th>
+                      <th>Full Name</th>
+                      <th>Section</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="studentsTableBody">
+                    <tr>
+                      <td colspan="4" class="loading-row">Loading students…</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ GRADES ══ -->
+        <div class="section-view" id="section-grades">
+          <div class="page-header">
+            <div>
+              <h1>Grades</h1>
+              <div class="page-meta">
+                Enter and manage student grades by grading period
+              </div>
+            </div>
+            <button class="btn btn-primary" onclick="openAddGradeModal()">
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="16" />
+                <line x1="8" y1="12" x2="16" y2="12" />
+              </svg>
+              Add Grade
+            </button>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Gradebook</div>
+              <div class="table-controls">
+                <div class="search-box">
+                  <svg
+                    class="icon"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="11" cy="11" r="8" />
+                    <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                  </svg>
+                  <input
+                    type="text"
+                    id="gradesSearch"
+                    placeholder="Search student…"
+                    oninput="filterGrades()"
+                  />
+                </div>
+                <select
+                  class="select-sm"
+                  id="gradesStudentFilter"
+                  onchange="loadGradesForStudent(this.value)"
+                >
+                  <option value="">All Students</option>
+                </select>
+              </div>
+            </div>
+            <div class="card-body" style="padding: 0">
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Student</th>
+                      <th>Subject</th>
+                      <th>Period</th>
+                      <th>Grade</th>
+                      <th>Status</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="gradesTableBody">
+                    <tr>
+                      <td colspan="6" class="loading-row">
+                        Select a student to view grades
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ ATTENDANCE ══ -->
+        <div class="section-view" id="section-attendance">
+          <div class="page-header">
+            <div>
+              <h1>Attendance</h1>
+              <div class="page-meta">Record daily class attendance</div>
+            </div>
+            <button
+              class="btn btn-primary"
+              onclick="openRecordAttendanceModal()"
+            >
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="16" />
+                <line x1="8" y1="12" x2="16" y2="12" />
+              </svg>
+              Record Attendance
+            </button>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Attendance Records</div>
+              <div class="table-controls">
+                <select
+                  class="select-sm"
+                  id="attStudentFilter"
+                  onchange="loadAttendanceForStudent(this.value)"
+                >
+                  <option value="">Select a student…</option>
+                </select>
+              </div>
+            </div>
+            <div class="card-body" style="padding: 0">
+              <div class="table-wrap">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Subject/Class</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody id="attendanceTableBody">
+                    <tr>
+                      <td colspan="3" class="loading-row">
+                        Select a student to view attendance records
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ══ REPORTS ══ -->
+        <div class="section-view" id="section-reports">
+          <div class="page-header">
+            <div>
+              <h1>Reports</h1>
+              <div class="page-meta">
+                Generate academic and attendance reports
+              </div>
+            </div>
+          </div>
+          <div class="report-grid">
+            <div class="report-card" onclick="fetchAtRiskReport()">
+              <div class="report-card-icon">⚠️</div>
+              <div class="report-card-name">At-Risk Students Report</div>
+              <div class="report-card-desc">
+                Students with 5 or more absences per subject (2 tardies = 1
+                absence)
+              </div>
+              <input
+                type="text"
+                class="form-input"
+                id="rpt-atrisk-section"
+                placeholder="Section name (e.g. Rizal)"
+                onclick="event.stopPropagation()"
+                style="margin-top: 4px; font-size: 0.75rem"
+              />
+              <button class="report-gen-btn">Generate Report</button>
+            </div>
+            <div class="report-card" onclick="fetchExcellenceReport()">
+              <div class="report-card-icon">🏆</div>
+              <div class="report-card-name">Academic Excellence</div>
+              <div class="report-card-desc">
+                Students with GWA ≥ 90 and no failing grades — excellence
+                candidates
+              </div>
+              <button class="report-gen-btn" style="margin-top: auto">
+                Generate Report
+              </button>
+            </div>
+            <div class="report-card" onclick="fetchTeacherAssignments()">
+              <div class="report-card-icon">📋</div>
+              <div class="report-card-name">Teacher Assignments</div>
+              <div class="report-card-desc">
+                All teacher–subject–section assignments across the school
+              </div>
+              <button class="report-gen-btn" style="margin-top: auto">
+                Generate Report
+              </button>
+            </div>
+            <div class="report-card" onclick="fetchSectionSummary()">
+              <div class="report-card-icon">🏫</div>
+              <div class="report-card-name">Section Summary</div>
+              <div class="report-card-desc">
+                Adviser, total students, and grade level per section
+              </div>
+              <input
+                type="number"
+                class="form-input"
+                id="rpt-section-id"
+                placeholder="Section ID (e.g. 1)"
+                onclick="event.stopPropagation()"
+                style="margin-top: 4px; font-size: 0.75rem"
+              />
+              <button class="report-gen-btn">Generate Report</button>
+            </div>
+          </div>
+
+          <!-- Report Results -->
+          <div class="card" id="reportResultCard" style="display: none">
+            <div class="card-header">
+              <div class="card-title" id="reportResultTitle">
+                Report Results
+              </div>
+              <button
+                class="btn btn-outline"
+                style="font-size: 0.75rem; padding: 5px 12px"
+                onclick="
+                  document.getElementById('reportResultCard').style.display =
+                    'none'
+                "
+              >
+                Close
+              </button>
+            </div>
+            <div class="card-body" style="padding: 0">
+              <div class="table-wrap">
+                <table class="data-table" id="reportTable">
+                  <thead id="reportTableHead"></thead>
+                  <tbody id="reportTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <!-- end app-shell -->
+
+    <!-- ═══════════════════════════════════════════════════
+     MODALS
+════════════════════════════════════════════════════ -->
+
+    <!-- ADD STUDENT MODAL -->
+    <div
+      class="modal-overlay"
+      id="addStudentModal"
+      onclick="closeOnBackdrop(event, 'addStudentModal')"
+    >
+      <div class="modal">
+        <div class="modal-header">
+          <div>
+            <div
+              style="
+                font-size: 1.05rem;
+                font-weight: 700;
+                color: var(--gray-900);
+              "
+            >
+              Enroll New Student
+            </div>
+            <div
+              style="
+                font-size: 0.78rem;
+                color: var(--gray-500);
+                margin-top: 2px;
+              "
+            >
+              Fill in the required fields to add a student record
+            </div>
+          </div>
+          <button class="modal-close" onclick="closeModal('addStudentModal')">
+            ✕
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="inline-form-wrap">
+            <div class="form-row-label">Personal Information</div>
+            <!-- Row 1: ID + First + Middle + Last -->
+            <div class="form-row">
+              <div class="form-field narrow">
+                <label class="form-label"
+                  >Student ID <span class="req">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-input"
+                  id="as-id"
+                  placeholder="2024-001"
+                />
+              </div>
+              <div class="form-field">
+                <label class="form-label"
+                  >First Name <span class="req">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-input"
+                  id="as-fname"
+                  placeholder="First name"
+                />
+              </div>
+              <div class="form-field">
+                <label class="form-label">Middle Name</label>
+                <input
+                  type="text"
+                  class="form-input"
+                  id="as-mname"
+                  placeholder="Middle name"
+                />
+              </div>
+              <div class="form-field">
+                <label class="form-label"
+                  >Last Name <span class="req">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-input"
+                  id="as-lname"
+                  placeholder="Last name"
+                />
+              </div>
+            </div>
+            <!-- Row 2: Section (text input) -->
+            <div class="form-row">
+              <div class="form-field wide">
+                <label class="form-label"
+                  >Section <span class="req">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-input"
+                  id="as-section"
+                  placeholder="e.g. Rizal, Grade 7-A, Section 1…"
+                />
+              </div>
+            </div>
+          </div>
+          <div id="as-error" class="error-banner"></div>
+          <p style="font-size: 0.72rem; color: var(--gray-400)">
+            <span style="color: var(--danger)">*</span> Required fields.
+          </p>
+          <div class="modal-footer">
+            <button
+              class="btn btn-outline"
+              onclick="closeModal('addStudentModal')"
+            >
+              Cancel
+            </button>
+            <button class="btn btn-primary" onclick="submitAddStudent()">
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Enroll Student
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDIT STUDENT MODAL -->
+    <div
+      class="modal-overlay"
+      id="editStudentModal"
+      onclick="closeOnBackdrop(event, 'editStudentModal')"
+    >
+      <div class="modal" style="max-width: 600px">
+        <div class="modal-header">
+          <div>
+            <div
+              style="
+                font-size: 1.05rem;
+                font-weight: 700;
+                color: var(--gray-900);
+              "
+            >
+              Edit Student Details
+            </div>
+          </div>
+          <button class="modal-close" onclick="closeModal('editStudentModal')">
+            ✕
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="edit-student-id" />
+          <div class="form-grid">
+            <div class="form-field">
+              <label class="form-label"
+                >First Name <span class="req">*</span></label
+              >
+              <input type="text" class="form-input" id="edit-fname" />
+            </div>
+            <div class="form-field">
+              <label class="form-label">Middle Name</label>
+              <input type="text" class="form-input" id="edit-mname" />
+            </div>
+            <div class="form-field">
+              <label class="form-label"
+                >Last Name <span class="req">*</span></label
+              >
+              <input type="text" class="form-input" id="edit-lname" />
+            </div>
+            <div class="form-field">
+              <label class="form-label">Section</label>
+              <select class="form-select" id="edit-section">
+                <option value="">No section</option>
+              </select>
+            </div>
+          </div>
+          <div id="edit-error" class="error-banner"></div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-outline"
+              onclick="closeModal('editStudentModal')"
+            >
+              Cancel
+            </button>
+            <button class="btn btn-primary" onclick="submitEditStudent()">
+              Save Changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADD GRADE MODAL -->
+    <div
+      class="modal-overlay"
+      id="addGradeModal"
+      onclick="closeOnBackdrop(event, 'addGradeModal')"
+    >
+      <div class="modal" style="max-width: 580px">
+        <div class="modal-header">
+          <div>
+            <div
+              style="
+                font-size: 1.05rem;
+                font-weight: 700;
+                color: var(--gray-900);
+              "
+            >
+              Add Grade
+            </div>
+            <div
+              style="
+                font-size: 0.78rem;
+                color: var(--gray-500);
+                margin-top: 2px;
+              "
+            >
+              Enter a student's grade for a subject and grading period
+            </div>
+          </div>
+          <button class="modal-close" onclick="closeModal('addGradeModal')">
+            ✕
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="inline-form-wrap">
+            <div class="form-row-label">Grade Entry</div>
+            <div class="form-row">
+              <div class="form-field wide">
+                <label class="form-label"
+                  >Student <span class="req">*</span></label
+                >
+                <select class="form-select" id="ag-student">
+                  <option value="">Select student…</option>
+                </select>
+              </div>
+              <div class="form-field narrow">
+                <label class="form-label"
+                  >Assignment ID <span class="req">*</span></label
+                >
+                <input
+                  type="number"
+                  class="form-input"
+                  id="ag-assignment"
+                  placeholder="e.g. 3"
+                />
+              </div>
+              <div class="form-field narrow">
+                <label class="form-label"
+                  >Grading Period <span class="req">*</span></label
+                >
+                <select class="form-select" id="ag-period">
+                  <option value="1">1st Quarter</option>
+                  <option value="2">2nd Quarter</option>
+                  <option value="3">3rd Quarter</option>
+                  <option value="4">4th Quarter</option>
+                </select>
+              </div>
+              <div class="form-field narrow">
+                <label class="form-label"
+                  >Grade (0–100) <span class="req">*</span></label
+                >
+                <input
+                  type="number"
+                  class="form-input"
+                  id="ag-grade"
+                  placeholder="88.50"
+                  min="0"
+                  max="100"
+                  step="0.01"
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            style="font-size: 0.72rem; color: var(--gray-500); margin-top: 4px"
+          >
+            Status is auto-calculated: ≥ 75 = Passed, &lt; 75 = Failed. You must
+            be the assigned teacher for this class.
+          </div>
+          <div id="ag-error" class="error-banner"></div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-outline"
+              onclick="closeModal('addGradeModal')"
+            >
+              Cancel
+            </button>
+            <button class="btn btn-primary" onclick="submitAddGrade()">
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Save Grade
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EDIT GRADE MODAL -->
+    <div
+      class="modal-overlay"
+      id="editGradeModal"
+      onclick="closeOnBackdrop(event, 'editGradeModal')"
+    >
+      <div class="modal" style="max-width: 440px">
+        <div class="modal-header">
+          <div
+            style="font-size: 1.05rem; font-weight: 700; color: var(--gray-900)"
+          >
+            Edit Grade
+          </div>
+          <button class="modal-close" onclick="closeModal('editGradeModal')">
+            ✕
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="eg-grade-id" />
+          <div class="form-grid col2">
+            <div class="form-field">
+              <label class="form-label"
+                >Assignment ID <span class="req">*</span></label
+              >
+              <input
+                type="number"
+                class="form-input"
+                id="eg-assignment"
+                placeholder="Assignment ID"
+              />
+            </div>
+            <div class="form-field">
+              <label class="form-label"
+                >New Grade (0–100) <span class="req">*</span></label
+              >
+              <input
+                type="number"
+                class="form-input"
+                id="eg-grade"
+                min="0"
+                max="100"
+                step="0.01"
+              />
+            </div>
+          </div>
+          <div id="eg-error" class="error-banner"></div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-outline"
+              onclick="closeModal('editGradeModal')"
+            >
+              Cancel
+            </button>
+            <button class="btn btn-primary" onclick="submitEditGrade()">
+              Update Grade
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RECORD ATTENDANCE MODAL -->
+    <div
+      class="modal-overlay"
+      id="recordAttModal"
+      onclick="closeOnBackdrop(event, 'recordAttModal')"
+    >
+      <div class="modal" style="max-width: 580px">
+        <div class="modal-header">
+          <div>
+            <div
+              style="
+                font-size: 1.05rem;
+                font-weight: 700;
+                color: var(--gray-900);
+              "
+            >
+              Record Attendance
+            </div>
+            <div
+              style="
+                font-size: 0.78rem;
+                color: var(--gray-500);
+                margin-top: 2px;
+              "
+            >
+              Post attendance for a student in your assigned class
+            </div>
+          </div>
+          <button class="modal-close" onclick="closeModal('recordAttModal')">
+            ✕
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="inline-form-wrap">
+            <div class="form-row-label">Attendance Entry</div>
+            <div class="form-row">
+              <div class="form-field wide">
+                <label class="form-label"
+                  >Student <span class="req">*</span></label
+                >
+                <select class="form-select" id="ra-student">
+                  <option value="">Select student…</option>
+                </select>
+              </div>
+              <div class="form-field narrow">
+                <label class="form-label"
+                  >Assignment ID <span class="req">*</span></label
+                >
+                <input
+                  type="number"
+                  class="form-input"
+                  id="ra-assignment"
+                  placeholder="e.g. 3"
+                />
+              </div>
+              <div class="form-field narrow">
+                <label class="form-label"
+                  >Date <span class="req">*</span></label
+                >
+                <input type="date" class="form-input" id="ra-date" />
+              </div>
+              <div class="form-field narrow">
+                <label class="form-label"
+                  >Status <span class="req">*</span></label
+                >
+                <select class="form-select" id="ra-status">
+                  <option value="Present">Present</option>
+                  <option value="Absent">Absent</option>
+                  <option value="Tardy">Tardy</option>
+                  <option value="Excused">Excused</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div
+            style="font-size: 0.72rem; color: var(--gray-500); margin-top: 4px"
+          >
+            Note: 2 Tardy entries count as 1 Absence. Students with 5+ absences
+            are flagged as At-Risk.
+          </div>
+          <div id="ra-error" class="error-banner"></div>
+          <div
+            id="ra-warning"
+            style="
+              display: none;
+              padding: 9px 12px;
+              background: var(--warning-bg);
+              border: 1.5px solid var(--warning);
+              border-radius: var(--radius-sm);
+              font-size: 0.78rem;
+              color: var(--warning);
+              font-weight: 600;
+            "
+          ></div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-outline"
+              onclick="closeModal('recordAttModal')"
+            >
+              Cancel
+            </button>
+            <button class="btn btn-primary" onclick="submitAttendance()">
+              <svg
+                class="icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              Save Attendance
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STUDENT PROFILE VIEW MODAL -->
+    <div
+      class="modal-overlay"
+      id="studentProfileModal"
+      onclick="closeOnBackdrop(event, 'studentProfileModal')"
+    >
+      <div class="modal">
+        <div class="modal-header" id="spm-header">
+          <div
+            class="risk-avatar"
+            style="
+              width: 48px;
+              height: 48px;
+              font-size: 1rem;
+              border-radius: 12px;
+            "
+            id="spm-initials"
+          >
+            ??
+          </div>
+          <div>
+            <div
+              style="
+                font-size: 1.05rem;
+                font-weight: 700;
+                color: var(--gray-900);
+              "
+              id="spm-name"
+            >
+              Student Name
+            </div>
+            <div
+              style="font-size: 0.78rem; color: var(--gray-500)"
+              id="spm-id-info"
+            >
+              ID: —
+            </div>
+          </div>
+          <button
+            class="modal-close"
+            onclick="closeModal('studentProfileModal')"
+          >
+            ✕
+          </button>
+        </div>
+        <div class="modal-body">
+          <div>
+            <div class="modal-section-title">Personal Information</div>
+            <div class="profile-info-grid">
+              <div class="profile-info-field">
+                <label>Full Name</label>
+                <div class="field-val" id="spm-fullname">—</div>
+              </div>
+              <div class="profile-info-field">
+                <label>Section</label>
+                <div class="field-val" id="spm-section">—</div>
+              </div>
+              <div class="profile-info-field">
+                <label>Student ID</label>
+                <div
+                  class="field-val"
+                  id="spm-sid"
+                  style="font-family: var(--font-mono)"
+                >
+                  —
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div>
+            <div class="modal-section-title">Grade Records</div>
+            <table class="subject-grade-table" id="spm-grades-table">
+              <thead>
+                <tr>
+                  <th>Subject/Assignment</th>
+                  <th>Period</th>
+                  <th>Grade</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="spm-grades-body">
+                <tr>
+                  <td
+                    colspan="4"
+                    style="
+                      text-align: center;
+                      color: var(--gray-400);
+                      padding: 20px;
+                    "
+                  >
+                    Loading…
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="divider"></div>
+          <div>
+            <div class="modal-section-title">Attendance Records</div>
+            <table class="subject-grade-table" id="spm-att-table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Class</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="spm-att-body">
+                <tr>
+                  <td
+                    colspan="3"
+                    style="
+                      text-align: center;
+                      color: var(--gray-400);
+                      padding: 20px;
+                    "
+                  >
+                    Loading…
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEACHER PROFILE MODAL -->
+    <div class="tp-modal-overlay" id="teacherProfileModal">
+      <div class="tp-modal">
+        <div class="tp-hero">
+          <div class="tp-hero-top">
+            <div class="tp-avatar" id="tp-avatar">AR</div>
+            <div class="tp-hero-info">
+              <div class="tp-hero-name" id="tp-name">Mrs. Ana Reyes</div>
+              <div class="tp-hero-role" id="tp-role">Subject Teacher</div>
+              <div class="tp-hero-chips">
+                <span class="tp-chip" id="tp-email-chip">📧 Loading…</span>
+                <span class="tp-chip">✅ Active</span>
+              </div>
+            </div>
+            <button class="tp-hero-close" onclick="closeTeacherProfile()">
+              ✕
+            </button>
+          </div>
+          <div class="tp-tab-bar">
+            <button
+              class="tp-tab active"
+              onclick="switchProfileTab(this, 'tp-pane-info')"
+            >
+              👤 Profile
+            </button>
+            <button
+              class="tp-tab"
+              onclick="switchProfileTab(this, 'tp-pane-assignments')"
+            >
+              📖 My Classes
+            </button>
+          </div>
+        </div>
+        <div class="tp-body">
+          <!-- Personal Info -->
+          <div class="tp-pane active" id="tp-pane-info">
+            <div class="tp-section">
+              <div class="tp-section-header">
+                <div class="tp-section-icon blue">👤</div>
+                <div class="tp-section-title">Account Information</div>
+              </div>
+              <div class="tp-section-body">
+                <div class="tp-info-grid">
+                  <div class="tp-field">
+                    <label>Full Name</label>
+                    <div class="tp-val" id="tp-fullname">—</div>
+                  </div>
+                  <div class="tp-field">
+                    <label>Role</label>
+                    <div class="tp-val" id="tp-role-detail">—</div>
+                  </div>
+                  <div class="tp-field">
+                    <label>Email</label>
+                    <div class="tp-val" id="tp-email">—</div>
+                  </div>
+                  <div class="tp-field">
+                    <label>Phone</label>
+                    <div class="tp-val" id="tp-phone">—</div>
+                  </div>
+                  <div class="tp-field">
+                    <label>Teacher ID</label>
+                    <div
+                      class="tp-val"
+                      id="tp-tid"
+                      style="font-family: var(--font-mono)"
+                    >
+                      —
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- My Assignments -->
+          <div class="tp-pane" id="tp-pane-assignments">
+            <div class="tp-section">
+              <div class="tp-section-header">
+                <div class="tp-section-icon blue">📖</div>
+                <div class="tp-section-title">My Class Assignments</div>
+              </div>
+              <div class="tp-section-body" style="padding: 0">
+                <table class="tp-schedule-table">
+                  <thead>
+                    <tr>
+                      <th>Subject</th>
+                      <th>Section</th>
+                      <th>Grade Level</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tp-assignments-body">
+                    <tr>
+                      <td
+                        colspan="3"
+                        style="
+                          text-align: center;
+                          color: var(--gray-400);
+                          padding: 20px;
+                        "
+                      >
+                        Loading…
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/dashboard.js"></script>
+  </body>
+</html>
