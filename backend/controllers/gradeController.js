@@ -14,20 +14,11 @@ exports.getGradesByStudent = async (req, res) => {
 };
 
 exports.addGrade = async (req, res) => {
-  const { student_id, subject_id, teacher_id, grading_period, grade } = req.body;
+  const { student_id, assignment_id, grading_period, numerical_grade, status } = req.body;
   try {
-    // Check if teacher is assigned to this subject
-    const [assignment] = await db.query(
-      'SELECT * FROM class WHERE teacher_id = ? AND subject_id = ?',
-      [teacher_id, subject_id]
-    );
-    if (assignment.length === 0) {
-      return res.status(403).json({ error: 'You are not assigned to this subject' });
-    }
-
     await db.query(
-      'INSERT INTO grades (student_id, subject_id, teacher_id, grading_period, grade) VALUES (?, ?, ?, ?, ?)',
-      [student_id, subject_id, teacher_id, grading_period, grade]
+      'INSERT INTO grades (student_id, assignment_id, grading_period, numerical_grade, status) VALUES (?, ?, ?, ?, ?)',
+      [student_id, assignment_id, grading_period, numerical_grade, status]
     );
     res.status(201).json({ message: 'Grade added successfully' });
   } catch (err) {
