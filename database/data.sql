@@ -407,3 +407,26 @@ INSERT INTO attendance_record (attendance_id, date, status, student_id, assignme
 (653, '2026-03-18', 'Tardy', 885002, 1025), 
 (654, '2026-03-19', 'Tardy', 885002, 1025), 
 (655, '2026-03-20', 'Tardy', 885002, 1025);
+
+-- ADD DATA FOR GRADES TABLE FOR STUDENTS IN SECTION 500119 (Ipil-Ipil) AND 500210 (Sampaguita) FOR SUBJECTS TAUGHT BY ANTONIO LUNA (ORAL COMMUNICATION) AND TERESA MAGBANUA (GENERAL MATHEMATICS)
+INSERT INTO grades (grade_id, grading_period, student_id, assignment_id, numerical_grade, status) VALUES
+( 1, 1, 884001, 1001, 85.0, 'Passed'), 
+( 2, 1, 884002, 1001, 78.0, 'Passed'), 
+( 3, 1, 884003, 1001, 92.0, 'Passed'), 
+( 4, 1, 884004, 1001, 88.0, 'Passed'), 
+( 5, 1, 884005, 1001, 90.0, 'Passed'), 
+( 6, 1, 884006, 1001, 95.0, 'Passed'), 
+( 7, 1, 884007, 1001, 80.0, 'Passed'), 
+( 8, 1, 884008, 1001, 82.0, 'Passed'), 
+( 9, 1, 884009, 1001, 87.0, 'Passed'), 
+(10, 1, 884010, 1001, 91.0, 'Passed'),
+(11, 1, 881001, 1009, 80.0, 'Passed'), 
+(12, 1, 881002, 1009, 85.0, 'Passed'), 
+(13, 1, 881003, 1009, 78.0, 'Passed'), 
+(14, 1, 881004, 1009, 92.0, 'Passed'), 
+(15, 1, 881005, 1009, 88.0, 'Passed'), 
+(16, 1, 881006, 1009, 75.0, 'Failed'),
+(17, 1, 881007, 1009, 70.0, 'Failed'), 
+(18, 1, 881008, 1009, 82.0, 'Passed'), 
+(19, 1, 881009, 1009, 90.0, 'Passed'), 
+(20, 1, 881010, 1009, 85.0, 'Passed');
