@@ -14,7 +14,7 @@
         // Load user session
         const raw = sessionStorage.getItem("edutrack_user");
         if (!raw) {
-          window.location.href = "Log_inPage.html";
+          window.location.href = "login.html";
           return;
         }
         currentUser = JSON.parse(raw);
@@ -972,7 +972,7 @@
       // ═══════════════════════════════════════════════════
       function doLogout() {
         sessionStorage.removeItem("edutrack_user");
-        window.location.href = "Log_inPage.html";
+        window.location.href = "login.html";
       }
 
       // ═══════════════════════════════════════════════════
