@@ -18,7 +18,7 @@ exports.addGrade = async (req, res) => {
   try {
     // Check if teacher is assigned to this subject
     const [assignment] = await db.query(
-      'SELECT * FROM teacher_assignments WHERE teacher_id = ? AND subject_id = ?',
+      'SELECT * FROM class WHERE teacher_id = ? AND subject_id = ?',
       [teacher_id, subject_id]
     );
     if (assignment.length === 0) {
@@ -40,7 +40,7 @@ exports.updateGrade = async (req, res) => {
   try {
     // Check if teacher is still assigned to this subject
     const [assignment] = await db.query(
-      'SELECT * FROM teacher_assignments WHERE teacher_id = ? AND subject_id = ?',
+      'SELECT * FROM class WHERE teacher_id = ? AND subject_id = ?',
       [teacher_id, subject_id]
     );
     if (assignment.length === 0) {
