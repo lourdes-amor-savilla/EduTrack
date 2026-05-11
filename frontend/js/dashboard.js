@@ -898,7 +898,7 @@
         // Load my assignments
         try {
           const rows = await apiFetch("/reports/teacher-assignments");
-          const mine = rows; // filter by teacher name if needed
+          const mine = rows.filter(r => r.Teacher_Name === currentUser.name);
           document.getElementById("tp-assignments-body").innerHTML = mine.length
             ? mine
                 .map(
