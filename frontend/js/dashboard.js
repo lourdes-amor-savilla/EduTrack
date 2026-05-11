@@ -14,7 +14,7 @@
         // Load user session
         const raw = sessionStorage.getItem("edutrack_user");
         if (!raw) {
-          window.location.href = "Log_inPage.html";
+          window.location.href = "login.html";
           return;
         }
         currentUser = JSON.parse(raw);
@@ -897,8 +897,8 @@
 
         // Load my assignments
         try {
-          const rows = await apiFetch("/reports/teacher-assignments");
-          const mine = rows.filter(r => r.Teacher_Name === currentUser.name);
+          const rows = await apiFetch(`/reports/teacher-assignments/${currentUser.teacher_id}`);
+          const mine = rows;
           document.getElementById("tp-assignments-body").innerHTML = mine.length
             ? mine
                 .map(
@@ -972,7 +972,7 @@
       // ═══════════════════════════════════════════════════
       function doLogout() {
         sessionStorage.removeItem("edutrack_user");
-        window.location.href = "Log_inPage.html";
+        window.location.href = "login.html";
       }
 
       // ═══════════════════════════════════════════════════

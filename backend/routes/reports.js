@@ -6,5 +6,6 @@ router.get('/at-risk/:sectionName', reportController.getAtRiskStudents);
 router.get('/academic-excellence', reportController.getAcademicExcellence);
 router.get('/teacher-assignments', reportController.getTeacherAssignments);
 router.get('/section-summary/:sectionId', reportController.getSectionSummary);
+router.get('/teacher-assignments/:teacherId', reportController.getTeacherAssignmentsById);
 
 module.exports = router;
