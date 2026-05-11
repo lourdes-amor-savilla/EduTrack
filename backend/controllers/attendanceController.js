@@ -3,10 +3,10 @@ const db = require('../db/connection');
 exports.getAttendanceByStudent = async (req, res) => {
   try {
     const [rows] = await db.query(
-      'SELECT * FROM attendance WHERE student_id = ?',
+      'SELECT * FROM attendance_record WHERE student_id = ?',
       [req.params.studentId]
     );
-    if (rows.length === 0) return res.status(404).json({ error: 'No attendance records found for this student' });
+    if (rows.length === 0) return res.status(404).json({ error: 'No attendance_record records found for this student' });
     res.json(rows);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -18,22 +18,22 @@ exports.recordAttendance = async (req, res) => {
   try {
     // Check if teacher is assigned to this subject
     const [assignment] = await db.query(
-      'SELECT * FROM teacher_assignments WHERE teacher_id = ? AND subject_id = ?',
+      'SELECT * FROM class WHERE teacher_id = ? AND subject_id = ?',
       [teacher_id, subject_id]
     );
     if (assignment.length === 0) {
       return res.status(403).json({ error: 'You are not assigned to this subject' });
     }
 
-    // Insert the attendance record
+    // Insert the attendance_record
     await db.query(
-      'INSERT INTO attendance (student_id, subject_id, teacher_id, date, status) VALUES (?, ?, ?, ?, ?)',
+      'INSERT INTO attendance_record (student_id, subject_id, teacher_id, date, status) VALUES (?, ?, ?, ?, ?)',
       [student_id, subject_id, teacher_id, date, status]
     );
 
     // Count tardies for this student in this subject
     const [tardies] = await db.query(
-      'SELECT COUNT(*) AS tardy_count FROM attendance WHERE student_id = ? AND subject_id = ? AND status = "Tardy"',
+      'SELECT COUNT(*) AS tardy_count FROM attendance_record WHERE student_id = ? AND subject_id = ? AND status = "Tardy"',
       [student_id, subject_id]
     );
 
@@ -42,7 +42,7 @@ exports.recordAttendance = async (req, res) => {
     const tardy_absences = Math.floor(tardy_count / 2);
 
     const [absences] = await db.query(
-      'SELECT COUNT(*) AS absence_count FROM attendance WHERE student_id = ? AND subject_id = ? AND status = "Absent"',
+      'SELECT COUNT(*) AS absence_count FROM attendance_record WHERE student_id = ? AND subject_id = ? AND status = "Absent"',
       [student_id, subject_id]
     );
 
@@ -51,7 +51,7 @@ exports.recordAttendance = async (req, res) => {
     // Flag student as at risk if total absences >= 5
     if (total_absences >= 5) {
       await db.query(
-        'UPDATE students SET at_risk = 1 WHERE student_id = ?',
+        'UPDATE student SET at_risk = 1 WHERE student_id = ?',
         [student_id]
       );
       return res.status(201).json({
