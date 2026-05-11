@@ -1,22 +1,22 @@
 const DEMO = {
-  "ana.reyes@rcos.edu.ph": {
-    teacher_id: 1,
-    name: "Mrs. Ana Reyes",
-    initials: "AR",
+  "a.luna@edutrack.ph": {
+    teacher_id: 112098,
+    name: "Mr. Antonio Luna",
+    initials: "AL",
+    role: "Class Adviser",
+    section_id: 500210,
+  },
+  "f.balagtas@edutrack.ph": {
+    teacher_id: 774821,
+    name: "Mr. Francisco Balagtas",
+    initials: "FB",
     role: "Subject Teacher",
     section_id: null,
   },
-  "carlos.bautista@rcos.edu.ph": {
-    teacher_id: 2,
-    name: "Mr. Carlos Bautista",
-    initials: "CB",
-    role: "Class Adviser",
-    section_id: 1,
-  },
-  "jose.cruz@rcos.edu.ph": {
-    teacher_id: 3,
-    name: "Mr. Jose Cruz",
-    initials: "JC",
+  "m.dizon@edutrack.ph": {
+    teacher_id: 663910,
+    name: "Ms. Marina Dizon",
+    initials: "MD",
     role: "Subject Teacher",
     section_id: null,
   },

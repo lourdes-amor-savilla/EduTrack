@@ -53,3 +53,20 @@ exports.getSectionSummary = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+exports.getTeacherAssignmentsById = async (req, res) => {
+  try {
+    const [rows] = await db.query(
+      `SELECT sub.subject_name AS Subject, sec.section_name AS Section, sec.grade_level AS Grade_Level
+       FROM class c
+       JOIN subject sub ON c.subject_id = sub.subject_id
+       JOIN section sec ON c.section_id = sec.section_id
+       WHERE c.teacher_id = ?`,
+      [req.params.teacherId]
+    );
+    if (rows.length === 0) return res.status(404).json({ error: 'No assignments found' });
+    res.json(rows);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
